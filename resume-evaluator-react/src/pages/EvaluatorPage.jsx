@@ -1,41 +1,17 @@
-import { useState } from "react"
+import useEvaluator from "../hooks/useEvaluator"
 
 function EvaluatorPage() {
-  const [jobDescription, setJobDescription] = useState("")
-  const [prompt, setPrompt] = useState("")
-  const [file, setFile] = useState(null)
-  const [status, setStatus] = useState("idle")
-  const [errorMessage, setErrorMessage] = useState("")
-  const [result, setResult] = useState("")
-
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    if (jobDescription === "") {
-      setStatus("error")
-      setErrorMessage("Please enter a job description.")
-      return
-    }
-
-    if (file === null) {
-      setStatus("error")
-      setErrorMessage("Please upload a PDF resume.")
-      return
-    }
-
-    setStatus("loading")
-    setErrorMessage("")
-    setResult("")
-
-    setTimeout(function () {
-      setStatus("success")
-      setResult(
-        "Evaluating " +
-          file.name +
-          "... ChatGPT integration coming in Stage 5."
-      )
-    }, 1500)
-  }
+  const {
+    jobDescription,
+    setJobDescription,
+    prompt,
+    setPrompt,
+    setFile,
+    status,
+    errorMessage,
+    result,
+    handleSubmit,
+  } = useEvaluator()
 
   return (
     <main>
@@ -72,13 +48,8 @@ function EvaluatorPage() {
       <section>
         <div id="results">
           {status === "idle" && <p>Results will appear here.</p>}
-
           {status === "loading" && <p>Evaluating...</p>}
-
-          {status === "error" && (
-            <p style={{ color: "red" }}>{errorMessage}</p>
-          )}
-
+          {status === "error" && <p style={{ color: "red" }}>{errorMessage}</p>}
           {status === "success" && <p>{result}</p>}
         </div>
       </section>
