@@ -1,0 +1,45 @@
+button {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* النتائج */
+#results {
+  background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+  border-radius: 12px;
+  border-left: 5px solid #4f46e5;
+  padding: 28px;
+  min-height: 200px;
+  font-size: 15px;
+  line-height: 1.8;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+}
+
+#results::before {
+  content: "📋 Results";
+  display: block;
+  font-weight: bold;
+  color: #4f46e5;
+  margin-bottom: 16px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,41 @@
+import { Routes, Route, Navigate } from "react-router-dom"
+import Header from "./components/Header"
+import EvaluatorPage from "./pages/EvaluatorPage"
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+import { useAuth } from "./context/AuthContext"
+
+function ProtectedRoute({ children }) {
+  const { user } = useAuth()
+
+  if (!user) {
+    return <Navigate to="/login" replace />
+  }
+
+  return children
+}
+
+function App() {
+  return (
+    <>
+      <Header />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <EvaluatorPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<h2>Page not found</h2>} />
+      </Routes>
+    </>
+  )
+}
+
+export default App
